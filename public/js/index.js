@@ -1,9 +1,18 @@
 /* eslint-disable */
 import '@babel/polyfill';
-import { displayMap } from './mapbox';
-import { login, logout } from './login';
-import { updateSettings } from './updateSettings';
-import { bookTour } from './stripe';
+import {
+  displayMap
+} from './mapbox';
+import {
+  login,
+  logout
+} from './login';
+import {
+  updateSettings
+} from './updateSettings';
+import {
+  bookTour
+} from './stripe';
 
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
@@ -36,7 +45,7 @@ if (userDataForm)
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
-    console.log(form);
+    // console.log(form);
 
     updateSettings(form, 'data');
   });
@@ -49,8 +58,11 @@ if (userPasswordForm)
     const passwordCurrent = document.getElementById('password-current').value;
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('password-confirm').value;
-    await updateSettings(
-      { passwordCurrent, password, passwordConfirm },
+    await updateSettings({
+        passwordCurrent,
+        password,
+        passwordConfirm
+      },
       'password'
     );
 
@@ -63,6 +75,8 @@ if (userPasswordForm)
 if (bookBtn)
   bookBtn.addEventListener('click', e => {
     e.target.textContent = 'Processing...';
-    const { tourId } = e.target.dataset;
+    const {
+      tourId
+    } = e.target.dataset;
     bookTour(tourId);
   });
